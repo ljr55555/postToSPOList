@@ -26,7 +26,7 @@ with open(strFilePath) as f:
     for strRecord in f:
         strRecordList = strRecord.split("\t")
 		
-        strBody = {"__metadata": { "type": "SP.Data.Teams_x0020_InteroperabilityListItem"}, "Title": "None", "User": strRecordList[0], "Mail": strRecordList[1], "Interoperability_x0020_Level": "UpgradeToTeams", "Status": "Initial Creation", "Date": dateNow}
+        strBody = {"__metadata": { "type": strListItemEntityTypeFullName}, "Title": "None", "User": strRecordList[0], "Mail": strRecordList[1], "Interoperability_x0020_Level": "UpgradeToTeams", "Status": "Initial Creation", "Date": dateNow}
         strBody  = json.dumps(strBody);
 
 
