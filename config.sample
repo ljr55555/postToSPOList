@@ -2,3 +2,4 @@ strListDataURI = "https://tenant.sharepoint.com/sites/SiteName/_api/web/lists/Ge
 strConnectURL = "tenant.sharepoint.com"
 strUsername = 'uid@example.com'
 strPassword = 'S0m3P@s5w-rD'
+strFilePath = "sourcedata.txt"
