@@ -1,0 +1,4 @@
+strListDataURI = "https://tenant.sharepoint.com/sites/SiteName/_api/web/lists/GetByTitle('List%20Name')/items"
+strConnectURL = "tenant.sharepoint.com"
+strUsername = 'uid@example.com'
+strPassword = 'S0m3P@s5w-rD'
