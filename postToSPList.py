@@ -1,7 +1,7 @@
 import datetime
 from requests_toolbelt.utils import dump
 import json
-from config import strListDataURI, strContextURL, strConnectURL, strUsername, strPassword, strFilePath
+from config import strListDataURI, strContextURL, strConnectURL, strUsername, strPassword, strFilePath, strListInfoURI
 
 import sharepy
 #https://github.com/JonathanHolvey/sharepy
@@ -11,14 +11,10 @@ dateNow = datetime.datetime.now().replace(microsecond=0).isoformat()
 
 s = sharepy.connect(strConnectURL,strUsername,strPassword)
 
-## Get items from list
-#r = s.get(strListDataURI)
-#jsonReply = json.loads(r.text)
-#print(jsonReply)
-#jsonData = jsonReply['d']
-##
-#for key,value in jsonData.items():
-#    print("key: {} | value: {}\n".format(key, value))
+## Get ListItemEntityTypeFullName from list
+r = s.get(strListInfoURI)
+jsonReply = json.loads(r.text)
+strListItemEntityTypeFullName = jsonReply['d']['ListItemEntityTypeFullName']
 
 r = s.post(strContextURL)
 
@@ -43,6 +39,4 @@ with open(strFilePath) as f:
 # Research references
 #https://sharepoint.stackexchange.com/questions/105380/adding-new-list-item-using-rest?newreg=70a88b49ad694022a867ac3a6e434380
 #https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/working-with-lists-and-list-items-with-rest
-
-# ListItemEntityTypeFullName is SP.Data.Teams_x0020_InteroperabilityListItem
 
