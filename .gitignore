@@ -1,4 +1,9 @@
 config.py
+sourcedata.txt
+sourcedata.old
+
+# VS Code
+.vscode/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -116,3 +121,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+sourcedata.txt

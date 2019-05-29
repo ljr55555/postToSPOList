@@ -22,19 +22,23 @@ r = s.post(strContextURL)
 jsonDigestRaw = json.loads(r.text)
 jsonDigestValue = jsonDigestRaw['d']['GetContextWebInformation']['FormDigestValue']
 
+iCounter = 1
+
 with open(strFilePath) as f:
     for strRecord in f:
+        
         strRecordList = strRecord.split("\t")
-		
-        strBody = {"__metadata": { "type": strListItemEntityTypeFullName}, "Title": "None", "User": strRecordList[0], "Mail": strRecordList[1], "Interoperability_x0020_Level": "UpgradeToTeams", "Status": "Initial Creation", "Date": dateNow}
-        strBody  = json.dumps(strBody);
 
+        strBody = {"__metadata": { "type": strListItemEntityTypeFullName}, "Title": "None", "User": strRecordList[0], "Mail": strRecordList[1].rstrip(), "Interoperability_x0020_Level": "UpgradeToTeams", "Status": "Initial Creation", "Date": dateNow}
+        strBody  = json.dumps(strBody)
+#        print(strBody)
 
         postRecord = s.post(strListDataURI,headers={"Content-Length": str(len(json.dumps(strBody))), 'accept': strContentType, 'content-Type': strContentType, "X-RequestDigest": jsonDigestValue}, data=strBody)
-        #data = dump.dump_all(postRecord)
-        #print("Session data:\t%s" % data.decode('utf-8'))
-        #print("HTTP Status Code:\t%s\nResult code content:\t%s" % (postRecord.status_code, postRecord.content))
-        print("HTTP Status Code:\t%s" % postRecord.status_code)
+#        #data = dump.dump_all(postRecord)
+#        #print("Session data:\t%s" % data.decode('utf-8'))
+#        #print("HTTP Status Code:\t%s\nResult code content:\t%s" % (postRecord.status_code, postRecord.content))
+        print("#{}: {}:\tHTTP Status Code {}".format(iCounter,strRecordList[0],postRecord.status_code))
+        iCounter = iCounter + 1
 
 # Research references
 #https://sharepoint.stackexchange.com/questions/105380/adding-new-list-item-using-rest?newreg=70a88b49ad694022a867ac3a6e434380
